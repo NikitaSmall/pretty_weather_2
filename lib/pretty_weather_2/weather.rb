@@ -10,30 +10,36 @@ module PrettyWeather2
       class_name = @config.data_provider.to_s.split("_").collect(&:capitalize).join
       @weather_object = eval "#{class_name}.new(@config)"
 
-      # if weather object has some errors (in attempt to get unavailable site) we will try to use other data provider
+      # if weather object has some errors (in attempt to get unavailable site or similar error)
+      # we will try to use other data provider
       if @weather_object.error
         class_name = @config.fallback_provider.to_s.split("_").collect(&:capitalize).join
         @weather_object = eval "#{class_name}.new(@config)"
       end
     end
 
+    # get float temperature of current weather
     def temperature
       @weather_object.temperature
     end
 
+    # get short string summary about current weather
     def describe_weather
       @weather_object.describe_weather
     end
 
+    # time where object was created
     def created_at
       @weather_object.created_at
     end
 
+    # for debugging
     def with_errors?
       return true if @weather_object.error
       false
     end
 
+    # in attempt to avoid error in mistyping of data provider name
     def self.const_missing(name)
       config = PrettyWeather2.configuration
       class_name = config.fallback_provider.to_s.split("_").collect(&:capitalize).join.to_sym
