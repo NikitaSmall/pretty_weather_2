@@ -82,6 +82,18 @@ you may access them this way:
 @weather_object.config.longitude
 ```
 
+Also you can to set uniq configs for lonely instance. To do so you need to create a new config instance.
+Here is a way to configure different instance (and for different cities):
+
+```ruby
+config = PrettyWeather2.configuration
+config.units = :metric
+config.city = 'London'
+first_weather_object = PrettyWeather2::Weather.new(config)
+config.city = 'Odesa'
+second_weather_object = PrettyWeather2::Weather.new(config)
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake false` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
@@ -90,7 +102,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/pretty_weather_2.
+Bug reports and pull requests are welcome on GitHub at https://github.com/NikitaSmall/pretty_weather_2.
 
 
 ## License
