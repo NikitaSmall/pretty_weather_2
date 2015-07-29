@@ -16,5 +16,9 @@ module PrettyWeather2
       @forecast_api_key = 'da01296688e16554f19b3161f69f158f'
       @world_weather_api_key = '2a034b1c63a5b6fec14c891fbe02d'
     end
+
+    def set_options(&block)
+      block.yield(self)
+    end
   end
 end
