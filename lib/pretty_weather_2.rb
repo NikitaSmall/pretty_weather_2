@@ -8,6 +8,7 @@ require 'pretty_weather_2/configuration'
 
 require 'pretty_weather_2/railtie' if defined?(Rails)
 require 'pretty_weather_2/engine' if defined?(Rails)
+# require 'generators/pretty_weather_2/install_generator' if defined?(Rails)
 
 require 'nokogiri'
 require 'open-uri'

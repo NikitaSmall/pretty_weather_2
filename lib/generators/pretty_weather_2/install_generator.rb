@@ -1,3 +1,5 @@
+require 'Rails::Generators'
+
 module PrettyWeather2
   module Generators
     class InstallGenerator < Rails::Generators::Base
