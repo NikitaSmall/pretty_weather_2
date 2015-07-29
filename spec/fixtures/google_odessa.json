@@ -1,0 +1,59 @@
+{
+  "results" : [
+    {
+      "address_components" : [
+        {
+          "long_name" : "Одесса",
+          "short_name" : "Одесса",
+          "types" : [ "locality", "political" ]
+        },
+        {
+          "long_name" : "Одесский горсовет",
+          "short_name" : "Одесский горсовет",
+          "types" : [ "administrative_area_level_3", "political" ]
+        },
+        {
+          "long_name" : "Одесская область",
+          "short_name" : "Одесская область",
+          "types" : [ "administrative_area_level_1", "political" ]
+        },
+        {
+          "long_name" : "Украина",
+          "short_name" : "UA",
+          "types" : [ "country", "political" ]
+        }
+      ],
+      "formatted_address" : "Одесса, Одесская область, Украина",
+      "geometry" : {
+        "bounds" : {
+          "northeast" : {
+            "lat" : 46.60042199999999,
+            "lng" : 30.8118901
+          },
+          "southwest" : {
+            "lat" : 46.319522,
+            "lng" : 30.6116849
+          }
+        },
+        "location" : {
+          "lat" : 46.482526,
+          "lng" : 30.7233095
+        },
+        "location_type" : "APPROXIMATE",
+        "viewport" : {
+          "northeast" : {
+            "lat" : 46.60042199999999,
+            "lng" : 30.8118901
+          },
+          "southwest" : {
+            "lat" : 46.319522,
+            "lng" : 30.6116849
+          }
+        }
+      },
+      "place_id" : "ChIJQ0yGC4oxxkARbBfyjOKPnxI",
+      "types" : [ "locality", "political" ]
+    }
+  ],
+  "status" : "OK"
+}

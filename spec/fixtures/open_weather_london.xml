@@ -1,0 +1,20 @@
+<current>
+  <city id="2643743" name="London">
+    <coord lon="-0.13" lat="51.51"/>
+    <country>GB</country>
+    <sun rise="2015-07-29T04:19:48" set="2015-07-29T19:53:12"/>
+  </city>
+  <temperature value="62.02" min="59" max="64" unit="fahrenheit"/>
+  <humidity value="51" unit="%"/>
+  <pressure value="1010" unit="hPa"/>
+  <wind>
+    <speed value="14.47" name="High wind, near gale"/>
+    <gusts/>
+    <direction value="280" code="W" name="West"/>
+  </wind>
+  <clouds value="20" name="few clouds"/>
+  <visibility/>
+  <precipitation mode="no"/>
+  <weather number="801" value="few clouds" icon="02d"/>
+  <lastupdate value="2015-07-29T10:41:37"/>
+</current>

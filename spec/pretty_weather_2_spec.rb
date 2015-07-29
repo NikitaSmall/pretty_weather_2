@@ -1,5 +1,5 @@
 require 'pretty_weather_2'
-require File.join(File.dirname(__FILE__), "spec_helper")
+require File.join(File.dirname(__FILE__), "spec_helper") # helper to stub requests
 
 describe PrettyWeather2 do
   it 'should be a weather class' do

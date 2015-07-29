@@ -32,6 +32,7 @@ Also you may specify a data_provider - a source of weather information. It can b
 
 The same data providers can be used as fallback_provider - an additional source.
 It can be useful in situations with unavailable sites.
+To use WorldWeather or Forecast.io you need to have your own api key!
 To manage these options you can create initializer like this:
 
 ```ruby
@@ -40,6 +41,9 @@ To manage these options you can create initializer like this:
     config.data_provider = :open_weather
     config.fallback_provider = :optimistic_weather
     config.units = :metric
+    # to manage keys:
+    config.forecast_api_key = 'your forecast.io api key'
+    config.world_weather_api_key = 'your WorldWeatherOnline api key'
   end
 ```
 

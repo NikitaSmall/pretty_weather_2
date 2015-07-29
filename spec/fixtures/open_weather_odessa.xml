@@ -1,0 +1,20 @@
+<current>
+  <city id="698740" name="Odessa">
+    <coord lon="30.73" lat="46.48"/>
+    <country>UA</country>
+    <sun rise="2015-07-29T02:34:22" set="2015-07-29T17:31:58"/>
+  </city>
+  <temperature value="32.79" min="29" max="36.11" unit="metric"/>
+  <humidity value="39" unit="%"/>
+  <pressure value="1011" unit="hPa"/>
+  <wind>
+    <speed value="6" name="Moderate breeze"/>
+    <gusts/>
+    <direction value="120" code="ESE" name="East-southeast"/>
+  </wind>
+  <clouds value="0" name="clear sky"/>
+  <visibility/>
+  <precipitation mode="no"/>
+  <weather number="800" value="Sky is Clear" icon="01d"/>
+  <lastupdate value="2015-07-29T11:04:34"/>
+</current>
