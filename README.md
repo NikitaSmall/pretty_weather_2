@@ -25,6 +25,7 @@ Also you may specify a data_provider - a source of weather information. It can b
 
 ```ruby
 :open_weather # for OpenWeather api
+:forecast # for forecast.io api
 :optimistic_weather # for easter egg
 ```
 
@@ -37,6 +38,21 @@ To manage these options you can create initializer like this:
     config.city = 'Odesa'
     config.data_provider = :open_weather
     config.fallback_provider = :optimistic_weather
+    config.units = :metric
+  end
+```
+
+Also you may specify coordinates to work with forecast.io with more accuracy.
+Coordinates work only with forecast.io api for now. For all other data providers they will be ignored.
+For forecast.io coordinates have higher priority to get information.
+To set the coordinates:
+
+```ruby
+  PrettyWeather2.configure do |config|
+    config.city = 'Odesa'
+    config.data_provider = :forecast
+    config.latitude = 46.482526
+    config.longitude = 30.723310
     config.units = :metric
   end
 ```
@@ -54,6 +70,16 @@ After creation of this object you can retrieve the following information from th
 ```ruby
 @weather_object.temperature # to get float number of current temperature
 @weather_object.describe_weather # to get short string with description of current weather
+```
+
+If you want to get special information of data_object,
+such as config params (city, data_provider, or coordinates that were found automatically)
+you may access them this way:
+
+```ruby
+@weather_object.config.data_provider # to get symbol of data provider
+@weather_object.config.latitude # to get coordinates
+@weather_object.config.longitude
 ```
 
 ## Development

@@ -10,8 +10,8 @@ Gem::Specification.new do |spec|
   spec.email         = ["nikitasosnov@yahoo.com"]
 
   spec.summary       = 'A more complicated and updated version of PrettyWeather gem'
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.description   = 'A little gem to use OpenWeather api. It is pretty simple to show current weather!'
+  spec.homepage      = "https://github.com/NikitaSmall/pretty_weather_2"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
