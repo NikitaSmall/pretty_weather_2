@@ -26,6 +26,7 @@ Also you may specify a data_provider - a source of weather information. It can b
 ```ruby
 :open_weather # for OpenWeather api
 :forecast # for forecast.io api
+:world_weather # for WorldWeatherOnline api
 :optimistic_weather # for easter egg
 ```
 

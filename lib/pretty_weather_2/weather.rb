@@ -5,6 +5,7 @@ module PrettyWeather2
     def initialize(config = PrettyWeather2.configuration)
       @config = config
 
+      # @config.city = @config.city.gsub(' ', '+')
       # this terrible string is for creating a new instance of data_provider class
       class_name = @config.data_provider.to_s.split("_").collect(&:capitalize).join
       @weather_object = eval "#{class_name}.new(@config)"

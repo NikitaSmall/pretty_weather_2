@@ -1,4 +1,5 @@
 require 'pretty_weather_2'
+require File.join(File.dirname(__FILE__), "spec_helper")
 
 describe PrettyWeather2 do
   it 'should be a weather class' do
@@ -145,6 +146,27 @@ describe PrettyWeather2 do
 
       second_weather_object = PrettyWeather2::Weather.new(config)
       expect(second_weather_object.temperature).to be < @weather_object.temperature
+    end
+  end
+
+  describe 'World Weather api' do
+    before :each do
+      PrettyWeather2.reset
+      PrettyWeather2.configure do |config|
+        config.city = 'Odesa'
+        config.data_provider = :world_weather
+        config.units = :metric
+      end
+
+      @weather_object = PrettyWeather2::Weather.new
+    end
+
+    it 'shows correct temperature' do
+      expect(@weather_object.temperature).to be_a(Float)
+    end
+
+    it 'describes the weather state' do
+      expect(@weather_object.describe_weather).to be_a(String)
     end
   end
 
