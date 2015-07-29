@@ -30,6 +30,7 @@ module PrettyWeather2
       begin
         # block to get coordinates if one of them is not represented
         if @config.latitude.nil? || @config.longitude.nil?
+          # getting coordinates from google maps api
           link_to_get_city = "http://maps.googleapis.com/maps/api/geocode/json?address=#{@config.city}&sensor=false"
           data = JSON.load(open(link_to_get_city))
 

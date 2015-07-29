@@ -25,8 +25,8 @@ module PrettyWeather2
         @error = true
         return
       end
-      query = "#{@config.latitude},#{@config.longitude}"
-      query = @config.city if @config.latitude.nil? || @config.longitude.nil?
+      query = "#{@config.latitude},#{@config.longitude}" # make query with coordinates
+      query = @config.city if @config.latitude.nil? || @config.longitude.nil? # with city, if one of coordinates is nil
 
       link = "http://api.worldweatheronline.com/free/v2/weather.ashx?key=#{@config.world_weather_api_key}&format=json&fx=no&q=#{query}"
 
