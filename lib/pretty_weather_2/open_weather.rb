@@ -1,6 +1,6 @@
 module PrettyWeather2
   class OpenWeather
-    attr_reader :error
+    attr_reader :error, :created_at
 
     # for weather describing
     WEATHERNAME = {
@@ -27,6 +27,7 @@ module PrettyWeather2
     def initialize(config)
       @config = config
 
+      @created_at = Time.now.strftime('%Y-%m-%dT%H:%M:%S%z')
       @error = false
       collect_data
     end
@@ -41,11 +42,12 @@ module PrettyWeather2
 
     protected
     def collect_data
-      link = "http://api.openweathermap.org/data/2.5/weather?q=#{@config.city}&mode=xml&units=#{@config.units}"
+      link = "http://api.openweathermap.org/data/2.5/weather?q=#{@config.city}&mode=xml&units=#{@config.units.to_s}"
 
+      # we have three attempts to get data.
+      # In other way we will get an error
+      # and gem will try to get weather info with fallback provider.
       attempts = 3
-      @updated_at = Time.now
-
       begin
         data = Nokogiri::XML(open(link))
 
@@ -56,7 +58,7 @@ module PrettyWeather2
       rescue OpenURI::HTTPError => e
         attempts -= 1
         retry unless attempts.zero?
-        @error = true # create an error if we can't get openweather more than 3 times
+        @error = true # check an error if we can't get openweather more than 3 times
       end
     end
   end

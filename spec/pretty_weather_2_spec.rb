@@ -104,6 +104,68 @@ describe PrettyWeather2 do
     end
   end
 
+  describe 'forecast.io api works' do
+    before :each do
+      PrettyWeather2.configure do |config|
+        config.city = 'London'
+        config.data_provider = :forecast
+        config.units = :imperial
+
+        # do this to search by the city name
+        # config.latitude = nil
+        # config.longitude = nil
+      end
+
+      @weather_object = PrettyWeather2::Weather.new
+    end
+
+    it 'shows current time' do
+      expect((@weather_object.created_at.to_f - Time.now.strftime('%Y-%m-%dT%H:%M:%S%z').to_f).abs).to be < 2
+    end
+
+    it 'shows coordinates from city name' do
+      expect(@weather_object.config.longitude).to_not eq(nil)
+      expect(@weather_object.config.latitude).to_not eq(nil)
+      expect(@weather_object.config.latitude).to_not eq(46.482526)
+    end
+
+    it 'shows the temperature' do
+      expect(@weather_object.temperature).to be_a(Float)
+    end
+
+    it 'describes the weather state' do
+      expect(@weather_object.describe_weather).to be_a(String)
+    end
+
+    it 'converts temperature to metric system' do
+      config = PrettyWeather2.configuration
+      config.units = :metric
+      config.city = 'London'
+      config.data_provider = :forecast
+
+      second_weather_object = PrettyWeather2::Weather.new(config)
+      expect(second_weather_object.temperature).to be < @weather_object.temperature
+    end
+  end
+
+  describe 'Odessa weather with forecast' do
+    before :each do
+      PrettyWeather2.reset
+
+      PrettyWeather2.configure do |config|
+        config.city = 'odesa'
+        config.data_provider = :forecast
+        config.units = :metric
+      end
+
+      @weather_object = PrettyWeather2::Weather.new
+    end
+
+    it 'should find correct coordinates' do
+      expect(@weather_object.config.latitude).to eq(46.482526)
+    end
+  end
+
   describe 'metaprogramming to avoid mistakes' do
     before :each do
       PrettyWeather2.configure do |config|

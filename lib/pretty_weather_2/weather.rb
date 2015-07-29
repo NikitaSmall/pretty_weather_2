@@ -24,6 +24,10 @@ module PrettyWeather2
       @weather_object.describe_weather
     end
 
+    def created_at
+      @weather_object.created_at
+    end
+
     def with_errors?
       return true if @weather_object.error
       false
