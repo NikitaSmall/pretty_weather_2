@@ -1,6 +1,9 @@
 require 'pretty_weather_2'
 require File.join(File.dirname(__FILE__), "spec_helper") # helper to stub requests
 
+# не хватает тестов на переключение к fallback провайдеру при возникновении ошибки
+
+
 describe PrettyWeather2 do
   it 'should be a weather class' do
     weather_object = PrettyWeather2::Weather.new
@@ -38,6 +41,7 @@ describe PrettyWeather2 do
     end
   end
 
+  # почему тесты для нескольких классов в водном файле?
   describe PrettyWeather2::Configuration do
     describe '#units' do
       it 'default units is :metric' do
@@ -77,6 +81,9 @@ describe PrettyWeather2 do
     end
   end
 
+  # Здесь тестируется не PrettyWeather2::Weather, а класс конкретного провайдера
+  # соотвтственно, этот тест должен быть изолирован и вынесен в отдельный файл.
+  # то же самое для других провайдеров
   describe 'open_weather api works' do
     before :each do
       PrettyWeather2.configure do |config|
@@ -86,6 +93,18 @@ describe PrettyWeather2 do
       end
     end
 
+
+    # Замечание по самому именованию it "..."
+    # метод #created_at ничего не показывает -- он возвращает значение
+    # Также есть общепринятое правило для именования спеков для конкретного метода
+    # describe ClassName do
+    #   describe "#instance_method" do
+    #     it ...
+    #   end
+    #   describe ".class_method" do
+    #     it ...
+    #   end
+    # end
     it 'shows a temperature' do
       weather_object = PrettyWeather2::Weather.new
 
@@ -126,7 +145,10 @@ describe PrettyWeather2 do
 
     it 'shows coordinates from city name' do
       expect(@weather_object.config.longitude).to_not eq(nil)
+
       expect(@weather_object.config.latitude).to_not eq(nil)
+      # Проверка "не равно ожидаемому значению" очень слабая (то же число, но строкой/+1 знак после запятой).
+      # Нужно использовать проверки на равенство ожидаемому результату
       expect(@weather_object.config.latitude).to_not eq(46.482526)
     end
 
