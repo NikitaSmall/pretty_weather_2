@@ -70,6 +70,9 @@ To use weather information from any data-source you should create weather object
 @weather_object = PrettyWeather2::Weather.new
 ```
 
+Каким образом я могу получить погоду в нескольких городах?
+Почему город параметр конфигурации, а не аргумент методя для полчения погоды?
+
 After creation of this object you can retrieve the following information from the Internet:
 
 ```ruby

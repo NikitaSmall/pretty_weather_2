@@ -4,6 +4,10 @@ require 'webmock/rspec'
 WebMock.disable_net_connect!(allow_localhost: true)
 
 RSpec.configure do |config|
+  # 1. Глобальные стабы http запросов плохая практика.
+  #    Запрет внешних запросов помогает не только ускорить тесты, но и убедиться, что приложение не шлет медленных запросов там, где это не нужно
+  #    Соотвественно, должен использоваться подход "запрещено все что не разрешено явно". Разрешаться конкретные http запросы должны на уровне it или context, но не глобально.
+  # 2. В случае, если нам нужны глобальные стабы, они должны быть вынесены в отдельный файл и помещены в scpe/support
   config.before(:each) do
     stub_request(:get, "http://maps.googleapis.com/maps/api/geocode/json?address=odesa&sensor=false").
         with(:headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Ruby'}).

@@ -13,6 +13,8 @@ module PrettyWeather2
       @latitude = nil # 46.482526
       @longitude = nil # 30.723310
 
+      # API ключи некогда не должны помещаться в код.
+      # Для gem-а не стоит давать деолтные ключи вообще, т.к. велика вероятность, что их забудут заменить на свои.
       @forecast_api_key = 'da01296688e16554f19b3161f69f158f'
       @world_weather_api_key = '2a034b1c63a5b6fec14c891fbe02d'
     end

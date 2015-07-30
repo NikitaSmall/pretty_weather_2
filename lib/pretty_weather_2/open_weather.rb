@@ -47,6 +47,9 @@ module PrettyWeather2
       # we have three attempts to get data.
       # In other way we will get an error
       # and gem will try to get weather info with fallback provider.
+
+      # логика повторов запросов должна быть размещена в управляющем объекте, а не в реализации клиента
+      # число повторов должно быть конфигуриемым
       attempts = 3
       begin
         data = Nokogiri::XML(open(link))
@@ -55,6 +58,8 @@ module PrettyWeather2
 
         weather_code = data.xpath('//weather')[0]['icon']
         @weather = WEATHERNAME[weather_code] if WEATHERNAME.has_key?(weather_code)
+      # Недостаточно обрабатывать только один тип ошибок. В случае, например, ошибки dns (SocketError)
+      # exception не будет обработан и погода не будет запрошена у fallback провайдера
       rescue OpenURI::HTTPError => e
         attempts -= 1
         retry unless attempts.zero?
