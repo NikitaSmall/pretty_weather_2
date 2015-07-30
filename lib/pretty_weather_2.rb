@@ -5,6 +5,7 @@ require 'pretty_weather_2/open_weather'
 require 'pretty_weather_2/forecast'
 require 'pretty_weather_2/world_weather'
 require 'pretty_weather_2/configuration'
+require 'pretty_weather_2/coordinates_mapper'
 
 require 'pretty_weather_2/railtie' if defined?(Rails)
 require 'pretty_weather_2/engine' if defined?(Rails)

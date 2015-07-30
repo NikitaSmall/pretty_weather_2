@@ -50,7 +50,7 @@ module PrettyWeather2
 
       # логика повторов запросов должна быть размещена в управляющем объекте, а не в реализации клиента
       # число повторов должно быть конфигуриемым
-      attempts = 3
+      attempts = @config.attempts_before_fallback
       begin
         data = Nokogiri::XML(open(link))
 
@@ -60,7 +60,8 @@ module PrettyWeather2
         @weather = WEATHERNAME[weather_code] if WEATHERNAME.has_key?(weather_code)
       # Недостаточно обрабатывать только один тип ошибок. В случае, например, ошибки dns (SocketError)
       # exception не будет обработан и погода не будет запрошена у fallback провайдера
-      rescue OpenURI::HTTPError => e
+
+      rescue => e
         attempts -= 1
         retry unless attempts.zero?
         @error = true # check an error if we can't get openweather more than 3 times

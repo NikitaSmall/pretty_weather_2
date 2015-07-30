@@ -1,5 +1,8 @@
-# in this helper we stub all the test requests
+require 'webmock/rspec'
+WebMock.allow_net_connect!
 
+# in this helper we stub all the test requests
+=begin
 require 'webmock/rspec'
 WebMock.disable_net_connect!(allow_localhost: true)
 
@@ -42,3 +45,5 @@ RSpec.configure do |config|
         to_return(:status => 200, :body => open(File.join(File.dirname(__FILE__), "fixtures/open_weather_london.xml")), :headers => {})
   end
 end
+
+=end

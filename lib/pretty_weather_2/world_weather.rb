@@ -30,7 +30,7 @@ module PrettyWeather2
 
       link = "http://api.worldweatheronline.com/free/v2/weather.ashx?key=#{@config.world_weather_api_key}&format=json&fx=no&q=#{query}"
 
-      attempts = 3
+      attempts = @config.attempts_before_fallback
       begin
         data = JSON.load(open(link))
 
@@ -38,7 +38,9 @@ module PrettyWeather2
         @temperature = data['data']['current_condition'][0]['temp_C'].to_f if @config.units == :metric
 
         @weather = data['data']['current_condition'][0]['weatherDesc'][0]['value'] # get weather description
-      rescue OpenURI::HTTPError => e
+
+        @error = true if @temperature.nil? || @weather.nil?
+      rescue => e
         attempts -= 1
         retry unless attempts.zero?
         @error = true # check an error if we can't get forecast.io more than 3 times

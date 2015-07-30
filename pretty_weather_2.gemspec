@@ -28,7 +28,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   # Почему используется gem json, а не JSON из stdlib? Есть какие-то причины, почему его недостаточно?
-  spec.add_runtime_dependency "json"
+  # spec.add_runtime_dependency "json"
   spec.add_runtime_dependency "nokogiri"
 
   spec.add_development_dependency "webmock"
