@@ -70,15 +70,16 @@ To use weather information from any data-source you should create weather object
 @weather_object = PrettyWeather2::Weather.new
 ```
 
-Also you can to set uniq configs for lonely instance. To do so you need to create a new config instance.
-Here is a way to configure different instance (for different cities):
+Also you can to set uniq cities easy way.
+You may set different cities for different instances this way:
 
 ```ruby
 first_weather_object = PrettyWeather2::Weather.new('London')
 second_weather_object = PrettyWeather2::Weather.new('Odesa')
 ```
 
-You can specify all the settings for different instances. To do so you need to create config instance
+You can to set uniq configs for lonely instance. To do so you need to create a new config instance.
+Here is a way to configure different instance. To do so you need to create config instance
 and modify it this way:
 
 ```ruby
