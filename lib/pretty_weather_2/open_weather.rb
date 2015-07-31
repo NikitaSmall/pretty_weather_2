@@ -1,6 +1,6 @@
 module PrettyWeather2
   class OpenWeather
-    attr_reader :error, :created_at
+    attr_reader :created_at
 
     # for weather describing
     WEATHERNAME = {

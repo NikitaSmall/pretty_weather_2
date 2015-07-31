@@ -2,7 +2,6 @@ PATH
   remote: ../../
   specs:
     pretty_weather_2 (0.1.1)
-      json
       nokogiri
 
 GEM

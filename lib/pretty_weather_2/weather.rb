@@ -1,6 +1,4 @@
 module PrettyWeather2
-  # нужно разделить отвественность классов. Класс Weather не должен хранить данные, полученне от внешних провайдеров.
-  # Значительно удобнее будет выделить отдельный класс (Forecast?) и хранить результаты в нем
   class Weather
     attr_accessor :config
 
@@ -9,8 +7,6 @@ module PrettyWeather2
       @config.attempts_before_fallback = 1 if @config.attempts_before_fallback < 1
       @config.city = city unless city.nil?
       @weather_object = nil
-
-      # 2. Реализациям клиентов для конкретного провайдера погоды не нужны знания о всей конфигурации нашего gem-а
     end
 
     # create instance before first time attempt to
@@ -30,8 +26,6 @@ module PrettyWeather2
     end
 
     # for debugging
-    # В целом эта логика должны быть помещена в класс провайдера или резульата.
-    # В этом случае в конкретных провайдерах можно будет реализовывать более сложную логику без изменения радительского класса.
     def with_errors?
       !!@weather_object.error
     end
@@ -42,7 +36,6 @@ module PrettyWeather2
       create_weather_object(@config.data_provider) if @weather_object.nil?
       create_weather_object(@config.fallback_provider) if with_errors?
       @weather_object
-      #@result
     end
 
     def create_weather_object(weather_class_symbol)

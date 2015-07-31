@@ -1,6 +1,6 @@
 module PrettyWeather2
   class Forecast
-    attr_reader :error, :created_at
+    attr_reader :created_at
 
     def initialize(config)
       @config = config
@@ -8,7 +8,7 @@ module PrettyWeather2
       @created_at = Time.now.strftime('%Y-%m-%dT%H:%M:%S%z')
       @error = false
       collect_data
-      
+
       save_data
     end
 

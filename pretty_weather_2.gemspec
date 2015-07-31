@@ -27,7 +27,6 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  # Почему используется gem json, а не JSON из stdlib? Есть какие-то причины, почему его недостаточно?
   # spec.add_runtime_dependency "json"
   spec.add_runtime_dependency "nokogiri"
 
