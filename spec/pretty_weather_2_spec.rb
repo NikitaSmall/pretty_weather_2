@@ -4,7 +4,7 @@ require File.join(File.dirname(__FILE__), "spec_helper") # helper to stub reques
 
 # не хватает тестов на переключение к fallback провайдеру при возникновении ошибки
 # find these tests at optimistic_weather_spec,
-# as OptimisticWeather instance has determinated parameters  of temperature and description.
+# as OptimisticWeather instance has determinate parameters  of temperature and description.
 
 describe PrettyWeather2 do
   describe '#configure' do
@@ -67,15 +67,6 @@ describe PrettyWeather2 do
         config.units = :metric
       end
     end
-
-    # not actual for now
-    # it 'avoid errors with constants' do
-    #   weather_object = PrettyWeather2::Weather.new
-
-    #   expect(weather_object.with_errors?).to eq(false)
-    #   expect(weather_object.temperature).to eq(42)
-    #   expect(weather_object.describe_weather).to_not eq(nil)
-    # end
 
     it 'will fall down in any case' do
       PrettyWeather2.configure do |config|

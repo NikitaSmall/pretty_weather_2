@@ -2,10 +2,8 @@ require 'pretty_weather_2'
 
 describe PrettyWeather2::OpenWeather do
   before :each do
-    WebMock.disable_net_connect!
-    stub_request(:get, "http://api.openweathermap.org/data/2.5/weather?mode=xml&q=Odesa&units=metric").
-        with(:headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Ruby'}).
-        to_return(:status => 200, :body => open(File.join(File.dirname(__FILE__), "support/open_weather_odessa.xml")), :headers => {})
+    WebMock.disable_net_connect!(allow: 'api.openweathermap.org')
+
     PrettyWeather2.reset
     PrettyWeather2.configure do |config|
       config.city = 'Odesa'

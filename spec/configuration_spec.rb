@@ -1,13 +1,6 @@
 require 'pretty_weather_2'
 
 describe PrettyWeather2::Configuration do
-  before :each do
-    WebMock.disable_net_connect!
-  end
-
-  after :each do
-    WebMock.allow_net_connect!
-  end
   describe '#units' do
     it 'default units is :metric' do
       expect(PrettyWeather2.configuration.units).to  eq(:metric)
