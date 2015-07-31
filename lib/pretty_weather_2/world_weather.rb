@@ -21,7 +21,7 @@ module PrettyWeather2
     protected
     def collect_data
       # error if no api key provided
-      if @config.forecast_api_key.nil?
+      if @config.world_weather_api_key.nil?
         @error = true
         return
       end

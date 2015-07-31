@@ -2,8 +2,6 @@ module PrettyWeather2
   class CoordinatesMapper
     def self.get_coordinates_by_city(city)
       # getting coordinates from google maps api
-
-      # геолокация не относится к отвественности этого класса
       link_to_get_city = "http://maps.googleapis.com/maps/api/geocode/json?address=#{city}&sensor=false"
 
       data = JSON.load(open(link_to_get_city))

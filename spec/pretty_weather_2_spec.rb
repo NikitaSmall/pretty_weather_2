@@ -3,9 +3,8 @@ require File.join(File.dirname(__FILE__), "spec_helper") # helper to stub reques
 
 
 # не хватает тестов на переключение к fallback провайдеру при возникновении ошибки
-
 # find these tests at optimistic_weather_spec,
-# as OptimisticWeather instance has determinated parameters.
+# as OptimisticWeather instance has determinated parameters  of temperature and description.
 
 describe PrettyWeather2 do
   it 'should be a weather class' do
@@ -44,6 +43,7 @@ describe PrettyWeather2 do
     end
   end
 
+  # not actual for now
   describe 'metaprogramming to avoid mistakes' do
     before :each do
       PrettyWeather2.configure do |config|

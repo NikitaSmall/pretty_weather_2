@@ -6,7 +6,7 @@ describe PrettyWeather2::WorldWeather do
     PrettyWeather2.configure do |config|
       config.city = 'Odesa'
       config.data_provider = :world_weather
-      config.fallback_provider = :open_weather
+      config.fallback_provider = :optimistic_weather
       config.units = :imperial
 
       config.world_weather_api_key = '2a034b1c63a5b6fec14c891fbe02d'

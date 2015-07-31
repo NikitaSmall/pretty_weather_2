@@ -29,10 +29,7 @@ module PrettyWeather2
       #
     end
 
-
-    # Следующие три метода можно заменить на def_delegators
-    # @see http://ruby-doc.org/stdlib-2.0.0/libdoc/forwardable/rdoc/Forwardable.html
-
+    # create instance before first time attempt to
     # get float temperature of current weather
     def temperature
       weather_object.temperature
@@ -73,10 +70,7 @@ module PrettyWeather2
     # end
 
     protected
-    def generate_class_name(symbol)
-      symbol.to_s.split("_").collect(&:capitalize).join
-    end
-
+    # create an instance of object (or get it if already exists)
     def weather_object
       create_weather_object(@config.data_provider) if @weather_object.nil?
       create_weather_object(@config.fallback_provider) if with_errors?
@@ -86,6 +80,10 @@ module PrettyWeather2
     def create_weather_object(weather_class_symbol)
       class_name = generate_class_name weather_class_symbol
       @weather_object = PrettyWeather2.const_get(class_name).new(@config)
+    end
+
+    def generate_class_name(symbol)
+      symbol.to_s.split("_").collect(&:capitalize).join
     end
   end
 end
