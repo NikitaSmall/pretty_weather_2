@@ -70,8 +70,37 @@ To use weather information from any data-source you should create weather object
 @weather_object = PrettyWeather2::Weather.new
 ```
 
-Каким образом я могу получить погоду в нескольких городах?
-Почему город параметр конфигурации, а не аргумент методя для полчения погоды?
+Also you can to set uniq configs for lonely instance. To do so you need to create a new config instance.
+Here is a way to configure different instance (for different cities):
+
+```ruby
+first_weather_object = PrettyWeather2::Weather.new('London')
+second_weather_object = PrettyWeather2::Weather.new('Odesa')
+```
+
+You can specify all the settings for different instances. To do so you need to create config instance
+and modify it this way:
+
+```ruby
+config_one = PrettyWeather2.configuration
+config_one.units = :imperial
+first_weather_object = PrettyWeather2::Weather.new('London', config_one) # units will be imperial
+config_two = PrettyWeather2.configuration
+config_two.units = :metric
+second_weather_object = PrettyWeather2::Weather.new('Odesa', config_two) # units will be metric
+```
+
+If you don't want to change default city (you work only with one city),
+but you want to collect data form different source you need to specify 'nil' instead of city name:
+
+```ruby
+config_one = PrettyWeather2.configuration
+config_one.units = :imperial
+first_weather_object = PrettyWeather2::Weather.new(nil, config_one) # units will be imperial
+config_two = PrettyWeather2.configuration
+config_two.units = :metric
+second_weather_object = PrettyWeather2::Weather.new(nil, config_two) # units will be metric
+```
 
 After creation of this object you can retrieve the following information from the Internet:
 
@@ -88,18 +117,6 @@ you may access them this way:
 @weather_object.config.data_provider # to get symbol of data provider
 @weather_object.config.latitude # to get coordinates
 @weather_object.config.longitude
-```
-
-Also you can to set uniq configs for lonely instance. To do so you need to create a new config instance.
-Here is a way to configure different instance (and for different cities):
-
-```ruby
-config = PrettyWeather2.configuration
-config.units = :metric
-config.city = 'London'
-first_weather_object = PrettyWeather2::Weather.new(config)
-config.city = 'Odesa'
-second_weather_object = PrettyWeather2::Weather.new(config)
 ```
 
 ## Development

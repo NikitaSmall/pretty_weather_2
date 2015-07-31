@@ -36,7 +36,7 @@ describe PrettyWeather2::Forecast do
 
       config.forecast_api_key = 'da01296688e16554f19b3161f69f158f'
 
-      second_weather_object = PrettyWeather2::Weather.new(config)
+      second_weather_object = PrettyWeather2::Weather.new(nil, config)
       expect(second_weather_object.temperature).to be < @weather_object.temperature
     end
 

@@ -1,7 +1,5 @@
 module PrettyWeather2
   class Forecast
-    # Класс PrettyWeather2::Forecast запрашивает прогноз погоды у forecast.io _И_ определяет координаты города
-    # у класса должна быть одна отвественность.
     attr_reader :error, :created_at
 
     def initialize(config)

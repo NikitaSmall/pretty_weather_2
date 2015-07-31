@@ -28,7 +28,7 @@ describe PrettyWeather2::Configuration do
       config = PrettyWeather2.configuration
       config.city = 'London'
 
-      weather_object = PrettyWeather2::Weather.new(config)
+      weather_object = PrettyWeather2::Weather.new(nil, config)
       expect(weather_object.config.city).to eq('London')
     end
 

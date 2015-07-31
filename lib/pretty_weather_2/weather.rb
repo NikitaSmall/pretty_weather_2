@@ -4,10 +4,10 @@ module PrettyWeather2
   class Weather
     attr_accessor :config
 
-    def initialize(config = PrettyWeather2.configuration)
+    def initialize(city = nil, config = PrettyWeather2.configuration)
       @config = config
       @config.attempts_before_fallback = 1 if @config.attempts_before_fallback < 1
-
+      @config.city = city unless city.nil?
       @weather_object = nil
 
       # Дублирование кода для default и fallback провайдера

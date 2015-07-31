@@ -7,11 +7,6 @@ require File.join(File.dirname(__FILE__), "spec_helper") # helper to stub reques
 # as OptimisticWeather instance has determinated parameters  of temperature and description.
 
 describe PrettyWeather2 do
-  it 'should be a weather class' do
-    weather_object = PrettyWeather2::Weather.new
-    expect(weather_object.class).to eq(PrettyWeather2::Weather)
-  end
-
   describe '#configure' do
     before :each do
       PrettyWeather2.configure do |config|
@@ -40,6 +35,25 @@ describe PrettyWeather2 do
 
       config = PrettyWeather2.configuration
       expect(config.units).to eq(:metric)
+    end
+  end
+
+  # second way to set city
+  describe '#initialize(city)' do
+    before :each do
+      PrettyWeather2.reset
+      PrettyWeather2.configure do |config|
+        config.data_provider = :open_weather
+        config.city = 'Istambul' # default city
+      end
+    end
+
+    it 'has higher priority than default city' do
+      weather_object = PrettyWeather2::Weather.new('Constantinopolis')
+
+      # Istambul non Constantinopolis
+      expect(weather_object.config.city).to_not eq('Istambul')
+      expect(weather_object.config.city).to eq('Constantinopolis')
     end
   end
 
