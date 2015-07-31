@@ -8,23 +8,30 @@ module PrettyWeather2
     def initialize(config)
       @created_at = Time.now.strftime('%Y-%m-%dT%H:%M:%S%z')
       collect_data
+
+      save_data
     end
 
     def temperature
-      42 # 42 is the answer for 'how many swallows to carry a coconut?' question, obviously.
+      @result.current_temperature # 42 is the answer for 'how many swallows to carry a coconut?' question, obviously.
     end
 
     def describe_weather
-      'The weather is fine' # it is always fine at Camelot
+      @result.current_description # it is always fine at Camelot
     end
 
     def error
-      false # there is no any errors
+      @result.error # there is no any errors
     end
 
     protected
     def collect_data
       'Let\'s not to go to Camelot. T\'is is silly place!'
+    end
+
+    def save_data
+      @result = PrettyWeather2::WeatherResult.new(42, 'The weather is fine', false)
+      @result.created_at = @created_at
     end
   end
 end

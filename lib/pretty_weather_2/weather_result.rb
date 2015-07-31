@@ -2,11 +2,11 @@ module PrettyWeather2
   class WeatherResult
     attr_accessor :current_temperature, :current_description, :error, :created_at
 
-    def initialize
-      @current_temperature = nil
-      @current_description = nil
-      @created_at = nil
-      @error = false
+    def initialize(temperature, description, error)
+      @current_temperature = temperature
+      @current_description = description
+      @created_at = Time.now.strftime('%Y-%m-%dT%H:%M:%S%z')
+      @error = error
     end
 
     def temperature
@@ -15,10 +15,6 @@ module PrettyWeather2
 
     def describe_weather
       @current_description
-    end
-
-    def created_at
-      @created_at
     end
   end
 end

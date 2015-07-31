@@ -30,14 +30,20 @@ module PrettyWeather2
       @created_at = Time.now.strftime('%Y-%m-%dT%H:%M:%S%z')
       @error = false
       collect_data
+
+      save_data
     end
 
     def temperature
-      @temperature
+      @result.current_temperature
     end
 
     def describe_weather
-      @weather
+      @result.current_description
+    end
+
+    def error
+      @result.error
     end
 
     protected
@@ -64,6 +70,11 @@ module PrettyWeather2
         retry unless attempts.zero?
         @error = true # check an error if we can't get openweather more than 3 times
       end
+    end
+
+    def save_data
+      @result = PrettyWeather2::WeatherResult.new(@temperature, @weather, @error)
+      @result.created_at = @created_at
     end
   end
 end
