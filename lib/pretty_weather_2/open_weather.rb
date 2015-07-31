@@ -33,7 +33,7 @@ module PrettyWeather2
     end
 
     def temperature
-      @temp_numeric
+      @temperature
     end
 
     def describe_weather
@@ -49,18 +49,16 @@ module PrettyWeather2
       # and gem will try to get weather info with fallback provider.
 
       # логика повторов запросов должна быть размещена в управляющем объекте, а не в реализации клиента
-      # число повторов должно быть конфигуриемым
       attempts = @config.attempts_before_fallback
       begin
         data = Nokogiri::XML(open(link))
 
-        @temp_numeric = data.xpath('//temperature')[0]['value'].to_f
+        @temperature = data.xpath('//temperature')[0]['value'].to_f
 
         weather_code = data.xpath('//weather')[0]['icon']
         @weather = WEATHERNAME[weather_code] if WEATHERNAME.has_key?(weather_code)
-      # Недостаточно обрабатывать только один тип ошибок. В случае, например, ошибки dns (SocketError)
-      # exception не будет обработан и погода не будет запрошена у fallback провайдера
 
+        @error = true if @temperature.nil? || @weather.nil?
       rescue => e
         attempts -= 1
         retry unless attempts.zero?

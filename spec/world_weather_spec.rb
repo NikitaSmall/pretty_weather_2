@@ -2,6 +2,11 @@ require 'pretty_weather_2'
 
 describe PrettyWeather2::WorldWeather do
   before :each do
+    WebMock.disable_net_connect!
+    stub_request(:get, "http://api.worldweatheronline.com/free/v2/weather.ashx?format=json&fx=no&key=2a034b1c63a5b6fec14c891fbe02d&q=Odesa").
+        with(:headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Ruby'}).
+        to_return(:status => 200, :body => open(File.join(File.dirname(__FILE__), "support/world_weather_odessa.json")), :headers => {})
+
     PrettyWeather2.reset
     PrettyWeather2.configure do |config|
       config.city = 'Odesa'
@@ -13,6 +18,10 @@ describe PrettyWeather2::WorldWeather do
     end
 
     @weather_object = PrettyWeather2::Weather.new
+  end
+
+  after :each do
+    WebMock.allow_net_connect!
   end
 
   describe '.temperature' do
