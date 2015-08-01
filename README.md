@@ -79,8 +79,7 @@ second_weather_object = PrettyWeather2::Weather.new('Odesa')
 ```
 
 You can to set uniq configs for lonely instance. To do so you need to create a new config instance.
-Here is a way to configure different instance. To do so you need to create config instance
-and modify it this way:
+Here is a way to configure different instance. You can do it this way:
 
 ```ruby
 config_one = PrettyWeather2.configuration
@@ -134,4 +133,3 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/Nikita
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
